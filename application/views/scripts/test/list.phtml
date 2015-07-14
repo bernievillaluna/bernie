@@ -1,0 +1,24 @@
+<html>
+<body>
+<?php
+include('config.phtml');
+
+$query1=mysql_query("select * from members");
+echo "<table><tr><td>Username</td><td>Password</td><td></td><td></td>";
+
+if($query1 === FALSE) { 
+    die(mysql_error()); // TODO: better error handling
+}
+
+while($query2=mysql_fetch_array($query1))
+{
+echo "<tr><td>".$query2['username']."</td>";
+echo "<td>".$query2['password']."</td>";
+echo "<td><a href='edit?id=".$query2['id']."'>Edit</a></td>";
+echo "<td><a href='delete?id=".$query2['id']."'>x</a></td><tr>";
+}
+?>
+</ol>
+</table>
+</body>
+</html>

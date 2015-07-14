@@ -1,0 +1,31 @@
+<html>
+<body>
+<?php
+include('config.phtml');
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+if(isset($_POST['submit']))
+{
+$username=$_POST['username'];
+$password=$_POST['password'];
+$query3=mysql_query("update members set username='$username', password='$password' where id='$id'");
+if($query3)
+{
+header('location:list');
+}
+}
+$query1=mysql_query("select * from members where id='$id'");
+$query2=mysql_fetch_array($query1);
+?>
+<form method="post" action="">
+Name:<input type="text" name="username" value="<?php echo $query2['username']; ?>" /><br />
+Age:<input type="text" name="password" value="<?php echo $query2['password']; ?>" /><br /><br />
+<br />
+<input type="submit" name="submit" value="update" />
+</form>
+<?php
+}
+?>
+</body>
+</html>

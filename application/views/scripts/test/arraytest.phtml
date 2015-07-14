@@ -1,0 +1,31 @@
+<?php
+$a = array(
+    "one" => 1,
+    "two" => 2,
+    "three" => 3,
+    "seventeen" => 17
+);
+$b = array ("bernie","cherry","aaron");
+$param = array("family=>ddi","key=>024917651","val=>7651");
+
+foreach ($a as $k) {
+    echo "&" . rawurlencode($k) . "\n";
+            //."=" .rawurldecode($v). "\n";
+}
+
+foreach ($b as $m => $n){
+    //echo rawurlencode($m) . "\n" . rawurlencode($n);
+    var_dump($param);
+    
+}
+
+foreach ($param as $k => $l){
+    echo "&" . rawurlencode($k) . "=" . rawurlencode($l);
+    
+}
+
+
+        
+        
+        
+ 

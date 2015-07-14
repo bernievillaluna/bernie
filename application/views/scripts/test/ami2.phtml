@@ -1,0 +1,34 @@
+<?php
+$cookie_jar = tempnam('/tmp','cookie');
+
+// log in
+$c = curl_init("http://10.254.236.2:8088/asterisk/mxml?username=CallStreamAMI&secret=aab4acbfe6c0caeb4906bb5b7210d0fa&action=login");
+curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($c, CURLOPT_COOKIEJAR, $cookie_jar);
+$page = curl_exec($c);
+print $page;
+curl_close($c);
+
+// retrieve account balance
+$b = curl_init("http://10.254.236.2:8088/asterisk/mxml?action=DBPut&family=ext7651&key=dialplanid&val=4444");
+$c = curl_init("http://10.254.236.2:8088/asterisk/mxml?action=command&command=database%20show%20global");
+curl_setopt($b, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($b, CURLOPT_COOKIEFILE, $cookie_jar);
+curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($c, CURLOPT_COOKIEFILE, $cookie_jar);
+$page = curl_exec($b);
+$page1 = curl_exec($c);
+var_dump(curl_exec($c));
+
+//$result = json_decode($page, true);
+//echo '<pre>'.print_r($result, true).'</pre>';
+//print $page;
+//print $page1;
+curl_close($c);
+curl_close($b);
+//echo $xml;
+
+// remove the cookie jar
+unlink($cookie_jar) or die("Can't unlink $cookie_jar");
+?>
+

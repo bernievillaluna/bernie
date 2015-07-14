@@ -1,0 +1,37 @@
+<br /><br />
+<div id="view-content">
+	<p>View script for controller <b>Test</b> and script/action name <b>index</b></p>
+	<?php echo $this->msg;?>
+	<?php echo "Today is" .  " " . date('l \t\h\e jS');?>
+<?php
+// Create two timezone objects, one for Taipei (Taiwan) and one for
+// Tokyo (Japan)
+$dateTimeZoneTaipei = new DateTimeZone("Asia/Taipei");
+$dateTimeZoneJapan = new DateTimeZone("Asia/Tokyo");
+
+// Create two DateTime objects that will contain the same Unix timestamp, but
+// have different timezones attached to them.
+
+$dateTimeTaipei = new DateTime("now", $dateTimeZoneTaipei);
+$dateTimeJapan = new DateTime("now", $dateTimeZoneJapan);
+
+// Calculate the GMT offset for the date/time contained in the $dateTimeTaipei
+// object, but using the timezone rules as defined for Tokyo
+// ($dateTimeZoneJapan).
+$timeOffset = $dateTimeZoneJapan->getOffset($dateTimeTaipei);
+
+// Should show int(32400) (for dates after Sat Sep 8 01:00:00 1951 JST).
+var_dump($timeOffset);
+?>
+
+<html>
+<head>
+<title>Login</title>
+</head>
+<form action="trylog.php" method = "post">
+<label for="username">Username</label> <input type="username" id="usename" name="username"><br /><br />
+<label for="password">Password:</label> <input type="text" id="password" name="password"><br /><br />
+<button type = "submit">Login</button>
+</form>
+</html>	
+</div>

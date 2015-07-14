@@ -1,0 +1,21 @@
+<html>
+<body>
+<?php
+include('config.phtml');
+if(isset($_GET['id']))
+{
+$id=$_GET['id'];
+$query1=mysql_query("delete from members where id='$id'");
+if($query1)
+{
+header('location:list');
+}
+ else {
+ echo "bad";   
+}
+
+}
+
+?>
+</body>
+</html>

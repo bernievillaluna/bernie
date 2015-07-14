@@ -1,0 +1,29 @@
+<?php
+class bernie 
+ {
+    protected $action;
+    protected $includecred;
+    protected $autologin=true;
+   
+     
+    public function build($action, $parameters = array(), $includecred = false)
+    {
+    var_dump ($includecred);
+    var_dump ($parameters); 
+     if ($this->autologin && (!in_array($action, array('login')))) {
+       echo "bernie";    
+     }
+    }    
+    
+   
+ }
+ 
+
+ 
+
+         
+
+
+
+
+       

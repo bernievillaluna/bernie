@@ -1,0 +1,14 @@
+<html><head></head><body>
+<?php $socket = fsockopen("10.254.236.2","5083", $errno, $errstr, 10); 
+if (!$socket) { echo "$errstr ($errno)\n"; } 
+else { fputs($socket, "Action: Login\r\n"); fputs($socket, "UserName: CallStreamAMI\r\n"); 
+fputs($socket, "Secret: aab4acbfe6c0caeb4906bb5b7210d0fa\r\n\r\n"); 
+fputs($socket, "Action: Command\r\n"); 
+fputs($socket, "Command: sip show peers\r\n\r\n");
+fputs($socket, "Action: Command\r\n"); 
+fputs($socket, "Command: database put bernie bernie 12345\r\n\r\n");
+fputs($socket, "Action: Command\r\n"); 
+fputs($socket, "Command: database show bernie\r\n\r\n");
+fputs($socket, "Action: Logoff\r\n\r\n");
+while (!feof($socket)) { echo fgets($socket).'<br>'; } fclose($socket); } ?> 
+</body> </html> 
